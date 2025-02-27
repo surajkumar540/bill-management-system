@@ -13,6 +13,11 @@ const Login = ({ setAuth }) => {
   // Login functionality
   const handleSubmit = (e) => {
     e.preventDefault();
+
+    if (Object.keys(validateLogin(formValues)).length > 0) {
+      setError(validateLogin(formValues));
+      return;
+    }
     setIsSubmit(true);
 
     if (
