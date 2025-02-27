@@ -15,7 +15,8 @@ const Customers = () => {
       bill.customer.address.toLowerCase().includes(searchTerm.toLowerCase())
   );
 
-  // this one i used on google 
+  // this one i used on google
+  // Download invoice as CSV
   const downloadInvoice = (bill) => {
     setIsLoading(true);
 
@@ -26,12 +27,16 @@ const Customers = () => {
         .join("\n");
 
       const csvContent = `
-      Customer Invoice
-      Name: ${bill.customer.name}
-      Date: ${bill.customer.date}
-      Contact: ${bill.customer.mobile}
-      Address: ${bill.customer.address}
-      Product,Quantity,Price,Total ${productRows} Total,${bill.products.reduce(
+Customer Invoice
+Name: ${bill.customer.name}
+Date: ${bill.customer.date}
+Contact: ${bill.customer.mobile}
+Address: ${bill.customer.address}
+
+Product,Quantity,Price,Total
+${productRows}
+
+Total,${bill.products.reduce(
         (sum, p) => sum + Number(p.quantity),
         0
       )},,$${bill.products
@@ -39,6 +44,7 @@ const Customers = () => {
         .toFixed(2)}
       `.trim();
 
+      // Create download link
       const blob = new Blob([csvContent], { type: "text/csv" });
       const url = URL.createObjectURL(blob);
       const a = document.createElement("a");
