@@ -1,6 +1,9 @@
 import { useState } from "react";
+import { useDispatch } from "react-redux";
+import { addBill } from "../redux/billSlice";
 
 const BillGenerator = () => {
+  const dispatch = useDispatch();
   const [customer, setCustomer] = useState({
     name: "",
     mobile: "",
@@ -48,6 +51,16 @@ const BillGenerator = () => {
   };
 
   const generateBill = () => {
+    const billData = { customer, products };
+    dispatch(addBill(billData));
+    setCustomer({
+      name: "",
+      mobile: "",
+      address: "",
+      date: "",
+    });
+    // and also clear the product inoput data
+    setProducts([{ name: "", quantity: "", price: "", total: "" }]);
     setIsModalOpen(true);
   };
 
