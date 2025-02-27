@@ -130,7 +130,7 @@ const BillGenerator = () => {
               Mobile Number
             </label>
             <input
-              type="text"
+              type="number"
               name="mobile"
               placeholder="Enter mobile number"
               value={customer.mobile}
