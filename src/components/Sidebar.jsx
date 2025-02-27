@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { BiLeftArrow, BiMoney } from "react-icons/bi";
+import { BiLeftArrow, BiLogOut, BiMoney } from "react-icons/bi";
 import { BsFilePerson } from "react-icons/bs";
 import { Link, useLocation } from "react-router-dom";
 
@@ -8,7 +8,7 @@ const Sidebar = () => {
   const [collapsed, setCollapsed] = useState(false);
   const [isMobile, setIsMobile] = useState(false);
 
-  // Handle responsive behavior
+  //for mobile device responsive
   useEffect(() => {
     const handleResize = () => {
       if (window.innerWidth < 640) {
@@ -16,22 +16,18 @@ const Sidebar = () => {
         setIsMobile(true);
       } else {
         setIsMobile(false);
-        // Optional: You can choose to restore the previous state here
-        // or keep it collapsed based on user preference
       }
     };
 
-    // Set initial state
     handleResize();
 
-    // Add event listener
     window.addEventListener("resize", handleResize);
 
-    // Clean up
+    // Clean up function
     return () => window.removeEventListener("resize", handleResize);
   }, []);
 
-  // Navigation items with icons
+  //my nav data
   const navItems = [
     {
       name: "Customers List",
@@ -44,6 +40,13 @@ const Sidebar = () => {
       icon: BiMoney,
     },
   ];
+
+  //  logout function
+  const handleLogout = () => {
+    console.log("User logged out");
+    localStorage.removeItem("auth"); // Remove only auth-related data
+    window.location.reload();
+  };
 
   return (
     <div
@@ -121,6 +124,17 @@ const Sidebar = () => {
             </div>
           </>
         )}
+      </div>
+
+      {/* Logout Button */}
+      <div className="p-4 border-t border-gray-800 mt-auto">
+        <button
+          onClick={handleLogout}
+          className="w-full flex items-center justify-center py-2 px-3 rounded-lg bg-blue-600 hover:bg-blue-700 transition-all text-white"
+        >
+          <BiLogOut className="text-lg" />
+          {!collapsed && <span className="ml-2">Logout</span>}
+        </button>
       </div>
 
       {/* Mobile Overlay */}
