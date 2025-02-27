@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { validateLogin } from "../utils/validate"; // Import validation function
 import { HiEye, HiEyeOff } from "react-icons/hi";
 
-const Login = () => {
+const Login = ({ setAuth }) => {
   const [formValues, setFormValues] = useState({ email: "", password: "" });
   const [error, setError] = useState({});
   const [isSubmit, setIsSubmit] = useState(false);
@@ -15,24 +15,17 @@ const Login = () => {
     e.preventDefault();
     setIsSubmit(true);
 
-    // Validate form inputs
-    const validationErrors = validateLogin(formValues);
-    setError(validationErrors);
-
-    if (Object.keys(validationErrors).length > 0) {
-      return; // Stop submission if validation fails
-    }
-
     if (
       formValues.email === "suraj@test.com" &&
       formValues.password === "suraj@1234"
     ) {
-      navigate("/dashboard");
+      localStorage.setItem("auth", "true");
+      setAuth(true); // Update state immediately
+      navigate("/customers");
     } else {
       setError({ general: "Invalid credentials!" });
     }
   };
-
   const handleChange = (e) => {
     const { name, value } = e.target;
     const newObject = { ...formValues, [name]: value };

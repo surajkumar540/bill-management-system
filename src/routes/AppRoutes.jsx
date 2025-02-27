@@ -4,22 +4,53 @@ import {
   Route,
   Navigate,
 } from "react-router-dom";
+import { useState, useEffect } from "react";
 import Login from "../pages/Login";
-// import Customers from "../pages/Customers";
-// import BillGenerator from "../pages/BillGenerator";
 import Dashboard from "../layouts/Dashboard";
+import Customers from "../pages/Customers";
+import BillGenerator from "../pages/BillGenerator";
 
 const AppRoutes = () => {
+  const [isAuthenticated, setIsAuthenticated] = useState(
+    localStorage.getItem("auth") === "true"
+  );
+
+  useEffect(() => {
+    const checkAuth = () => {
+      setIsAuthenticated(localStorage.getItem("auth") === "true");
+    };
+
+    window.addEventListener("storage", checkAuth); // Listen for localStorage changes
+
+    return () => {
+      window.removeEventListener("storage", checkAuth);
+    };
+  }, []);
+
   return (
     <Router>
       <Routes>
-        <Route path="/" element={<Navigate to="/login" />} />
-        <Route path="/login" element={<Login />} />
+        <Route
+          path="/"
+          element={<Navigate to={isAuthenticated ? "/customers" : "/login"} />}
+        />
+        <Route
+          path="/login"
+          element={
+            isAuthenticated ? (
+              <Navigate to="/customers" />
+            ) : (
+              <Login setAuth={setIsAuthenticated} />
+            )
+          }
+        />
 
-        {/* Protected Routes with Sidebar */}
-        <Route path="/dashboard" element={<Dashboard />}>
-          {/* <Route path="/customers" element={<Customers />} />
-          <Route path="/bill-generator" element={<BillGenerator />} /> */}
+        {/* Protected Routes */}
+        <Route
+          element={isAuthenticated ? <Dashboard /> : <Navigate to="/login" />}
+        >
+          <Route path="/customers" element={<Customers />} />
+          <Route path="/bill-generator" element={<BillGenerator />} />
         </Route>
       </Routes>
     </Router>
