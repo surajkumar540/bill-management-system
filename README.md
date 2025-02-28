@@ -1,12 +1,58 @@
-# React + Vite
+Live Link - https://bill-management-system-wine.vercel.app
+# Bill Management System
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+bill management React application.
 
-Currently, two official plugins are available:
+## Features
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+### 1. Login Form Page
+- Design a login form page with the following fields:
+  - **Email**
+  - **Password**
+- Implement **validation** for both fields.
 
-## Expanding the ESLint configuration
+### 2. Customer Table
+- Implement a customer table containing the following 6 fields:
+  - **Client Name**
+  - **Product Quantity**
+  - **Billing Date**
+  - **Contact Details**
+  - **Address**
+  - **Billing Price**
 
-If you are developing a production application, we recommend using TypeScript and enable type-aware lint rules. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+### 3. Sidenav
+- Create a side nav containing two tabs:
+  - **Customers List**
+  - **Bill Generator**
+
+### 4. Styling and Design
+- Use your own custom styles and design ideas to create a clean, responsive UI/UX.
+
+### 5. Bill Generator UI
+- Design a bill generator form with the following fields:
+  - **Customer Name**
+  - **Customer Mobile Number**
+  - **Customer Address**
+  - **Billing Date**
+- Add functionality to dynamically add new input fields for product details, including:
+  - **Product Name**
+  - **Product Quantity**
+  - **Product Price**
+  - **Total Price**
+
+Example UI for product fields:
+
+![Bill Generator UI](https://prod-files-secure.s3.us-west-2.amazonaws.com/76a0172c-d58b-4241-bb64-f4533077b180/aebb9d58-c43e-48be-9704-5203fbb1b8e8/Untitled.png)
+
+### 6. Success Modal
+- Implement a success modal that opens upon button click, showing a success message.
+
+### 7. Invoice Download
+- Add functionality to download the generated invoice as a CSV file.
+
+### 8. Update Customer List
+- After successfully generating a bill, the bill data should be added to the customer list.
+
+**State Management**: Use **Redux** for managing state and implementing functionality.
+
+
