@@ -1,6 +1,6 @@
 import React from "react";
 import { useSelector } from "react-redux";
-import { BiDownload, BiSearch, BiRefresh } from "react-icons/bi";
+import { BiRefresh } from "react-icons/bi";
 import SearchBar from "../components/customers/SearchBar";
 import CustomerList from "../components/customers/CustomerList";
 

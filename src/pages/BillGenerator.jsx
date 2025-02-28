@@ -115,7 +115,7 @@ const BillGenerator = () => {
         handleCustomerChange={handleCustomerChange}
       />
 
-      /{/* Products Section */}
+      {/* Products Section */}
       <div className="mb-6">
         <div className="flex justify-between items-center mb-4 pb-2 border-b">
           <h3 className="text-lg font-semibold text-gray-700">Products</h3>
